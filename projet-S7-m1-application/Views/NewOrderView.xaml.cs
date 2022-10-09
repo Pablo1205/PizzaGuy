@@ -14,20 +14,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace projet_S7_m1_application.Pages
+namespace projet_S7_m1_application.Views
 {
     /// <summary>
     /// Logique d'interaction pour NewOrder.xaml
     /// </summary>
-    public partial class NewOrder : Page
+    public partial class NewOrderView : UserControl
     {
-        public NewOrder()
+        public NewOrderView()
         {
             InitializeComponent();
         }
         private void RegisterCustomerButton(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RegisterCustomer());
+            // NavigationService.Navigate(new RegisterCustomer());
             return;
         }
         private void ContinueCustomer(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace projet_S7_m1_application.Pages
             if(customer.CheckIfUserIsInDatabase())
             {
                 Console.WriteLine("User exists");
-                NavigationService.Navigate(new CreateOrder());
+                // NavigationService.Navigate(new CreateOrder());
             } else
             {
                 TextError.Text = "User does not exist";
