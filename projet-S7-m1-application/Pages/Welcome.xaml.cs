@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace projet_S7_m1_application.Views
+namespace projet_S7_m1_application.Pages
 {
     /// <summary>
     /// Logique d'interaction pour Welcome.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class Welcome : Page
     {
-        public HomeView()
+        public Welcome()
         {
             InitializeComponent();
         }
