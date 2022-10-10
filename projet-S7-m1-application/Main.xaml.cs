@@ -55,6 +55,23 @@ namespace projet_S7_m1_application
         private void GetAvailableDrink()
         {
             Database newDatabse = new Database();
+            MySqlConnection conn = newDatabse.conn;
+            string sql = "SELECT * from Drink";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            List<Drink> listDrink = new List<Drink>();
+            while (rdr.Read())
+            {
+                Drink drink = new Drink((int)rdr[0], rdr[1].ToString(), rdr[2].ToString());
+                listDrink.Add(drink);
+            }
+            rdr.Close();
+            Application.Current.Properties["AvailableDrink"] = listDrink;
+            listDrink.ForEach(drink =>
+            {
+                Console.WriteLine(drink.GetName());
+            });
+            newDatabse.CloseConnection();
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

@@ -11,14 +11,12 @@ namespace projet_S7_m1_application.Classes
     {
         private int drinkID;
         private string name;    
-        private string description; 
-        private int price;
+        private string price;
 
-        public Drink(int drinkID, string name, string description, int price)
+        public Drink(int drinkID, string name, string price)
         {
             this.drinkID = drinkID;
             this.name = name;
-            this.description = description;
             this.price = price;
         }   
 
@@ -31,13 +29,7 @@ namespace projet_S7_m1_application.Classes
         {
             return this.name;
         }
-
-        public string GetDescription()
-        {
-            return this.description;
-        }
-
-        public int GetPrice()
+        public string GetPrice()
         {
             return this.price;
         }
