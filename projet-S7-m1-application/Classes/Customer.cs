@@ -34,9 +34,11 @@ namespace projet_S7_m1_application.Classes
         private void CloseConnection()
         {
             this.conn.Close();
+            this.conn = null;
         }
         public bool CheckIfUserIsInDatabase()
         {
+
             if (this.existInDatabase == true) return true;
             MySqlConnection conn = this.GetConnection();
             string sql = "SELECT * from Customer WHERE PhoneNumber='" + this.PhoneNumber + "'";
@@ -70,6 +72,7 @@ namespace projet_S7_m1_application.Classes
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 this.CloseConnection();
+                
 
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

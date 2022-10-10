@@ -71,6 +71,8 @@ namespace projet_S7_m1_application.Pages
             else
             {
                 customer.AddCustomerToDatabase(LastName, FirstName, StreetText, TownText, PostalCodeText);
+                Application.Current.Properties["CurrentCustomer"] = customer;
+                NavigationService.Navigate(new CreateOrder());
             }       
         }
     }
