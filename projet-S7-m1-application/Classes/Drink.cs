@@ -13,20 +13,14 @@ namespace projet_S7_m1_application.Classes
         private string name;    
         private string description; 
         private int price;
-        private MySqlConnection conn = null;
 
-        private MySqlConnection GetConnection()
+        public Drink(int drinkID, string name, string description, int price)
         {
-            if (this.conn != null) return this.conn;
-            Database database = new Database();
-            this.conn = database.conn;
-            return this.conn;
-        }
-        private void CloseConnection()
-        {
-            this.conn.Close();
-            this.conn = null;
-        }
+            this.drinkID = drinkID;
+            this.name = name;
+            this.description = description;
+            this.price = price;
+        }   
 
         public int GetDrinkID()
         {

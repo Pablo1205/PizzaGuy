@@ -12,20 +12,14 @@ namespace projet_S7_m1_application.Classes
         private int pizzaID;
         private string name;
         private string description;
-        private int price;
-        private MySqlConnection conn = null;
+        private string price;
 
-        private MySqlConnection GetConnection()
+        public Pizza(int pizzaID, string name, string description, string price)
         {
-            if (this.conn != null) return this.conn;
-            Database database = new Database();
-            this.conn = database.conn;
-            return this.conn;
-        }
-        private void CloseConnection()
-        {
-            this.conn.Close();
-            this.conn = null;
+            this.pizzaID = pizzaID;
+            this.name = name;
+            this.description = description;
+            this.price = price;
         }
 
         public int GetPizzaID()
@@ -43,7 +37,7 @@ namespace projet_S7_m1_application.Classes
             return this.description;
         }
 
-        public int GetPrice()
+        public string GetPrice()
         {
             return this.price;
         }
