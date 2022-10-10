@@ -87,5 +87,25 @@ namespace projet_S7_m1_application.Classes
         {
             return this.LastName;
         }
+
+        public string GetStreet()
+        {
+            return this.Street;
+        }
+
+        public string GetCity()
+        {
+            return this.City;
+        }
+
+        public string GetPhoneNumber()
+        {
+            return this.PhoneNumber;
+        }
+
+        public string GetPostalCode()
+        {
+            return this.PostalCode;
+        }
     }
 }

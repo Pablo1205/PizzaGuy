@@ -36,6 +36,7 @@ namespace projet_S7_m1_application.Pages
             if(customer.CheckIfUserIsInDatabase())
             {
                 Console.WriteLine("User exists");
+                Application.Current.Properties["CurrentCustomer"] = customer;
                 NavigationService.Navigate(new CreateOrder());
             } else
             {
