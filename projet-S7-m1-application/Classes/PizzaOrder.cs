@@ -6,25 +6,13 @@ using System.Threading.Tasks;
 
 namespace projet_S7_m1_application.Classes
 {
-    internal class PizzaOrder
+    public class PizzaOrder : Order
     {
-        private int pizzaID;
-        private int customerOrderID;
-        private int quantity;
-
-        public int GetPizzaID()
+        public PizzaOrder(int id, int customerOrderID, int quantity)
         {
-            return this.pizzaID;
-        }
-
-        public int GetCustomerOrderID()
-        {
-            return this.customerOrderID;
-        }
-
-        public int GetQuantity()
-        {
-            return this.quantity;
+            this.id = id;
+            this.customerOrderID = customerOrderID;
+            this.quantity = quantity;
         }
     }
 }
