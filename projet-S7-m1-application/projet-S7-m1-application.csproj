@@ -271,6 +271,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Customer.cs" />
+    <Compile Include="Classes\CustomerOrder.cs" />
+    <Compile Include="Classes\Drink.cs" />
+    <Compile Include="Classes\DrinkOrder.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
