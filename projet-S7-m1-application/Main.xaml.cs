@@ -1,4 +1,5 @@
-﻿using projet_S7_m1_application.Pages;
+﻿using projet_S7_m1_application.Classes;
+using projet_S7_m1_application.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,14 @@ namespace projet_S7_m1_application
                 navFrame.Navigate(new People());
             } else if (selected.Name == "iconNewOrder")
             {
-                navFrame.Navigate(new NewOrder());
+                Customer customer = Application.Current.Properties["CurrentCustomer"] as Customer;
+                if(customer != null)
+                {
+                    navFrame.Navigate(new CreateOrder());
+                } else
+                {
+                    navFrame.Navigate(new NewOrder());
+                }
             }
         }
     }

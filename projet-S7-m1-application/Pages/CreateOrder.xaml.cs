@@ -34,5 +34,10 @@ namespace projet_S7_m1_application.Pages
             postalCode.Text = this.customer.GetPostalCode();
             PhoneNumber.Text = this.customer.GetPhoneNumber();
         }
+        private void goBack(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Properties["CurrentCustomer"] = null;
+            NavigationService.Navigate(new NewOrder());
+        }
     }
 }
