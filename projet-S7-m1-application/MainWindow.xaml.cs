@@ -23,8 +23,8 @@ namespace projet_S7_m1_application
         public MainWindow()
         {
             InitializeComponent();
-            Database newDatabse = new Database();
         }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
