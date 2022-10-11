@@ -15,7 +15,7 @@ namespace projet_S7_m1_application
         // MYSQL USERNAME :     
         // Database : robebou_m1_application_project 
         // Host : mysql-robebou.alwaysdata.net
-        public MySql.Data.MySqlClient.MySqlConnection conn;
+        public MySqlConnection conn;
         public Database()
         {
             this.InitConnection();
