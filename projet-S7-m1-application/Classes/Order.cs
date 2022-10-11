@@ -8,23 +8,23 @@ namespace projet_S7_m1_application.Classes
 {
     public abstract class Order
     {
-        public int id;
-        public int customerOrderID;
-        public int quantity;
+        public int Id;
+        public int CustomerOrderID;
+        public int Quantity;
 
         public int GetID()
         {   
-            return this.id;
+            return this.Id;
         }
 
         public int GetCustomerOrderID()
         {
-            return this.customerOrderID;
+            return this.CustomerOrderID;
         }
 
         public int GetQuantity()
         {
-            return this.quantity;
+            return this.Quantity;
         }
     }
 }

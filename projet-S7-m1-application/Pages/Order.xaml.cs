@@ -26,7 +26,7 @@ namespace projet_S7_m1_application
 
         public Order()
         {
-            //InitializeComponent();
+            InitializeComponent();
             Database database = new Database();
             MySqlConnection conn = database.conn;
 
@@ -41,7 +41,7 @@ namespace projet_S7_m1_application
                 // List<Pizza> pizzaOrder = new List<Pizza>();
                 //List<Drink> drinkOrder = new List<Drink>();
              
-                listOrder.Add(new DrinkOrder((int)rdr[0], (int)rdr[1], (int)rdr[2]));
+                listOrder.Add(new DrinkOrder() {DrinkID = (int)rdr[0], CustomerOrderID = (int)rdr[1], Quantity = (int)rdr[2] });
                 
                 //this.id = rdr[1].ToString();
                 //this.customerOrderID = rdr[2].ToString();
@@ -52,7 +52,7 @@ namespace projet_S7_m1_application
 
 
             }
-           // allOrders.ItemsSource = listOrder;
+            allOrders.ItemsSource = listOrder;
             rdr.Close();
         }
     }

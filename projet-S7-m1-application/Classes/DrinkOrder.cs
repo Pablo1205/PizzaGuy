@@ -8,11 +8,11 @@ namespace projet_S7_m1_application.Classes
 {
     public class DrinkOrder : Order
     {
-        public DrinkOrder(int id, int customerOrderID, int quantity)
-        {
-            this.id = id;
-            this.customerOrderID = customerOrderID; 
-            this.quantity = quantity;
-        }
+
+        public int DrinkID { get; set; }
+
+        public int CustomerOrderID { get; set; }
+
+        public int Quantity { get; set; }
     }
 }
