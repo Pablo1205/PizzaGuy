@@ -10,9 +10,9 @@ namespace projet_S7_m1_application.Classes
 {
     internal class Customer
     {
-        private string PhoneNumber;
+        public string PhoneNumber { get; set; }
         public string LastName { get; set; }
-        private string FirstName;
+        public string FirstName { get; set; }
         private string Street;
         private string City;
         private string PostalCode;
