@@ -24,5 +24,11 @@ namespace projet_S7_m1_application.Pages
         {
             InitializeComponent();
         }
+
+        private void goBack(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Properties["CurrentCustomer"] = null;
+            NavigationService.Navigate(new Order());
+        }
     }
 }
