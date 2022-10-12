@@ -19,7 +19,7 @@
                         <GridViewColumn Header="Last Name" Width="150" DisplayMemberBinding="{Binding Customer.LastName}" />
                         <GridViewColumn Header="Order Number" Width="150" DisplayMemberBinding="{Binding CustomerOrderID}" />
                         <GridViewColumn Header="Status" Width="150" DisplayMemberBinding="{Binding status}" />
-                        <GridViewColumn Header="Order" Width="150">
+                        <GridViewColumn Header="Order" Width="150" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="See the order" Click="Button_Click"/>

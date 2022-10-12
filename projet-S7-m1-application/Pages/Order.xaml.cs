@@ -47,9 +47,9 @@ namespace projet_S7_m1_application
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Press click");
+            //MessageBox.Show("Press click");
+            Application.Current.Properties["CurrentCustomer"] = null;
+            NavigationService.Navigate(new OrderDetails()); 
         }
-
-
     }
 }
