@@ -30,18 +30,18 @@ namespace projet_S7_m1_application
             Database database = new Database();
             MySqlConnection conn = database.conn;
 
-            string sql = "SELECT * FROM DrinkOrder";
+            string sql = "SELECT * FROM CustomerOrder";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
-            List<DrinkOrder> listOrder = new List<DrinkOrder>();
+            List<CustomerOrder> listOrder = new List<CustomerOrder>();
             while (rdr.Read())
             {
                 // create var customerOrder
                 // List<Pizza> pizzaOrder = new List<Pizza>();
                 //List<Drink> drinkOrder = new List<Drink>();
              
-                listOrder.Add(new DrinkOrder() {DrinkID = (int)rdr[0], CustomerOrderID = (int)rdr[1], Quantity = (int)rdr[2] });
+                listOrder.Add(new CustomerOrder((int)rdr[0], rdr[2].ToString(), (int)rdr[1]));
                 
                 //this.id = rdr[1].ToString();
                 //this.customerOrderID = rdr[2].ToString();

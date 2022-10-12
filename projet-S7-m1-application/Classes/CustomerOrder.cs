@@ -9,18 +9,19 @@ namespace projet_S7_m1_application.Classes
 {
     internal class CustomerOrder
     {
-        private int CustomerOrderID;
-        private int CustomerID;
-
-        public int GetCustomerOrderID()
+        public CustomerOrder(int CustomerOrderID, string status, int CustomerID)
         {
-            return this.CustomerOrderID;
+            this.Customer = new Customer(CustomerID);
+            this.CustomerOrderID = CustomerOrderID;
+            this.CustomerID = CustomerID;
+            this.status = status;
         }
 
-        public int GetCustomerID()
-        {
-            return this.CustomerID;
-        }
+        public int CustomerID { get; }
+        public string status { get; }
+        public int CustomerOrderID { get; }
+        public Customer Customer { get; }
+
     }
 }
 

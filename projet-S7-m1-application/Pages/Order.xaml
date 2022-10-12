@@ -15,7 +15,7 @@
             <ListView x:Name="allOrders">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="id" Width="120" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="id" Width="120" DisplayMemberBinding="{Binding Customer.LastName}" />
                         <GridViewColumn Header="customerOrderID" Width="120" DisplayMemberBinding="{Binding CustomerOrderID}" />
                     </GridView>
                 </ListView.View>
@@ -24,7 +24,7 @@
                     <GroupStyle>
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Id}"/>
+                                <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Customer.LastName}"/>
                             </DataTemplate>
                         </GroupStyle.HeaderTemplate>
                     </GroupStyle>

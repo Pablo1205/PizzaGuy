@@ -11,19 +11,42 @@ namespace projet_S7_m1_application.Classes
     internal class Customer
     {
         private string PhoneNumber;
-        private string LastName;
+        public string LastName { get; set; }
         private string FirstName;
         private string Street;
         private string City;
         private string PostalCode;
         private MySqlConnection conn = null;
         private bool existInDatabase = false;
+        private int CustomerID;
 
         public Customer(string PhoneNumber)
         {
             this.PhoneNumber = PhoneNumber;
         }
-        
+        public Customer(int customerID)
+        {
+            this.CustomerID = customerID;
+            GetUserInfoFromID();
+        }
+        private void GetUserInfoFromID()
+        {
+            MySqlConnection conn = this.GetConnection();
+            string sql = "SELECT * from Customer WHERE customerID='" + this.CustomerID + "'";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                this.LastName = rdr[1].ToString();
+                this.FirstName = rdr[2].ToString();
+                this.PhoneNumber = rdr[3].ToString();
+                this.City = rdr[4].ToString();
+                this.Street = rdr[5].ToString();
+                this.PostalCode = rdr[6].ToString();
+            }
+            rdr.Close();
+            this.CloseConnection();
+        }
         private MySqlConnection GetConnection()
         {
             if (this.conn != null) return this.conn;
