@@ -23,6 +23,7 @@ namespace projet_S7_m1_application
     /// </summary>
     public partial class Order : Page
     {
+        List<CustomerOrder> listOrder = new List<CustomerOrder>();
 
         public Order()
         {
@@ -35,19 +36,21 @@ namespace projet_S7_m1_application
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
-            List<CustomerOrder> listOrder = new List<CustomerOrder>();
+            
             while (rdr.Read())
             {
-                listOrder.Add(new CustomerOrder((int)rdr[0], rdr[2].ToString(), (int)rdr[1]));
+                this.listOrder.Add(new CustomerOrder((int)rdr[0], rdr[2].ToString(), (int)rdr[1]));
             }
-            allOrders.ItemsSource = listOrder;
+            allOrders.ItemsSource = this.listOrder;
             rdr.Close();
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Properties["CurrentCustomer"] = null;
+            var CustomerOrderIDSelected = ((Button)sender).Tag;
+            CustomerOrder result = this.listOrder.Find(x => x.CustomerOrderID == (int)CustomerOrderIDSelected);
+            Application.Current.Properties["CurrentOrder"] = result;
             NavigationService.Navigate(new OrderDetails()); 
         }
     }

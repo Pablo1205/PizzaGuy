@@ -22,22 +22,13 @@
                         <GridViewColumn Header="Order" Width="150" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="See the order" Click="Button_Click"/>
+                                    <Button Content="See the order" Click="Button_Click" Tag="{Binding CustomerOrderID}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
 
-                <ListView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Customer.LastName}"/>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </ListView.GroupStyle>
             </ListView>
         </StackPanel>
     </Grid>

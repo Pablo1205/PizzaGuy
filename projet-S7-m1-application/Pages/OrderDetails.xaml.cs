@@ -1,4 +1,5 @@
-﻿using System;
+﻿using projet_S7_m1_application.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,16 @@ namespace projet_S7_m1_application.Pages
     /// </summary>
     public partial class OrderDetails : Page
     {
+        CustomerOrder customerOrder;
         public OrderDetails()
         {
             InitializeComponent();
+            this.customerOrder = Application.Current.Properties["CustomerOrder"] as CustomerOrder;
         }
 
-        private void goBack(object sender, RoutedEventArgs e)
+        private void GoBack(object sender, RoutedEventArgs e)
         {
-            Application.Current.Properties["CurrentCustomer"] = null;
+            Application.Current.Properties["CustomerOrder"] = null;
             NavigationService.Navigate(new Order());
         }
     }
