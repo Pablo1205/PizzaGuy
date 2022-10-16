@@ -9,54 +9,55 @@
       Title="OrderDetails">
 
     <Grid Background="white">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Grid.Row="0">
             <Path Fill="#272537" MouseDown="GoBack" HorizontalAlignment="Left" Margin="10 10 0 0" Data="M22,3H7C6.31,3 5.77,3.35 5.41,3.88L0,12L5.41,20.11C5.77,20.64 6.31,21 7,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12"/>
             <TextBlock HorizontalAlignment="Center"  Text="Order Details" FontWeight="Bold" Margin="0,10,0,0"/>
 
             <TextBlock HorizontalAlignment="Center"  Text="Client Information" FontWeight="Bold" Margin="0,10,0,0"/>
-           
-            <TextBlock HorizontalAlignment="Center"  Text="Order" FontWeight="Bold" Margin="0,10,0,0"/>
 
-            <ListView x:Name="Pizzas">
+            <ListView x:Name="clientcontact">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Pizza" Width="150" DisplayMemberBinding="{Binding Customer.FirstName}" />
-                        <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding Customer.LastName}" />
+                        <GridViewColumn Header="FirstName" Width="150" DisplayMemberBinding="{Binding Customer.FirstName}" />
+                        <GridViewColumn Header="FirstName" Width="150" DisplayMemberBinding="{Binding Customer.LastName}" />
+                        <GridViewColumn Header="Phone" Width="150" DisplayMemberBinding="{Binding Customer.PhoneNumber}" />
                     </GridView>
                 </ListView.View>
-
-                <ListView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Customer.LastName}"/>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </ListView.GroupStyle>
+            </ListView>
+            <ListView x:Name="clientaddress">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Street" Width="150" DisplayMemberBinding="{Binding Customer.Street}" />
+                        <GridViewColumn Header="Zip Code" Width="150" DisplayMemberBinding="{Binding Customer.PostalCode}" />
+                        <GridViewColumn Header="City" Width="150" DisplayMemberBinding="{Binding Customer.City}" />
+                    </GridView>
+                </ListView.View>
             </ListView>
 
-            <ListView x:Name="Drinks">
+            <TextBlock HorizontalAlignment="Center"  Text="Order" FontWeight="Bold" Margin="0,10,0,0"/>
+            
+            <ListView x:Name="drinks">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Drink" Width="150" DisplayMemberBinding="{Binding Customer.FirstName}" />
-                        <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding Customer.LastName}" />
+                        <GridViewColumn Header="Drink" Width="150" DisplayMemberBinding="{Binding OrderString.name}" />
+                        <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding OrderString.qty}" />
                     </GridView>
                 </ListView.View>
+            </ListView>
 
-                <ListView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Customer.LastName}"/>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </ListView.GroupStyle>
+            <ListView x:Name="pizzas">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Pizza" Width="150" DisplayMemberBinding="{Binding OrderString.name}" />
+                        <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding OrderString.qty}" />
+                    </GridView>
+                </ListView.View>
             </ListView>
 
 
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
 

@@ -290,6 +290,7 @@
     <Compile Include="Classes\Drink.cs" />
     <Compile Include="Classes\DrinkOrder.cs" />
     <Compile Include="Classes\Order.cs" />
+    <Compile Include="Classes\OrderString.cs" />
     <Compile Include="Classes\Pizza.cs" />
     <Compile Include="Classes\PizzaOrder.cs" />
     <Compile Include="Database.cs" />

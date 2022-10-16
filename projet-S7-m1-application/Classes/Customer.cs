@@ -13,9 +13,9 @@ namespace projet_S7_m1_application.Classes
         public string PhoneNumber { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
-        private string Street;
-        private string City;
-        private string PostalCode;
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string PostalCode { get; set; }
         private MySqlConnection conn = null;
         private bool existInDatabase = false;
         private int CustomerID;

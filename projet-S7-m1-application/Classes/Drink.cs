@@ -18,7 +18,7 @@ namespace projet_S7_m1_application.Classes
             this.drinkID = drinkID;
             this.name = name;
             this.price = price;
-        }   
+        }
 
         public int GetDrinkID()
         {
