@@ -26,7 +26,7 @@
                 </ListView.View>
             </ListView>
             <ListView x:Name="clientaddress">
-                <ListView.View>
+                <ListView.View >
                     <GridView>
                         <GridViewColumn Header="Street" Width="150" DisplayMemberBinding="{Binding Customer.Street}" />
                         <GridViewColumn Header="Zip Code" Width="150" DisplayMemberBinding="{Binding Customer.PostalCode}" />
@@ -40,23 +40,23 @@
             <ListView x:Name="drinks">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Drink" Width="150" DisplayMemberBinding="{Binding OrderString.name}" />
-                        <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding OrderString.qty}" />
+                        <GridViewColumn Header="Drink" Width="150" DisplayMemberBinding="{Binding name}" />
+                        <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding qty}" />
                     </GridView>
                 </ListView.View>
             </ListView>
 
-            <ListView x:Name="pizzas">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Pizza" Width="150" DisplayMemberBinding="{Binding OrderString.name}" />
-                        <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding OrderString.qty}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                <ListView x:Name="pizzas">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Pizza" Width="150" DisplayMemberBinding="{Binding name}" />
+                            <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding qty}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
 
-        </StackPanel>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>
