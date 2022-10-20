@@ -7,31 +7,23 @@ using System.Threading.Tasks;
 
 namespace projet_S7_m1_application.Classes
 {
-    internal class Drink 
+    internal class Drink
     {
-        private int drinkID;
-        private string name;    
-        private string price;
 
-        public Drink(int drinkID, string name, string price)
+        public Drink(int DrinkID, string Name, string NameDescription, int Price, int Number)
         {
-            this.drinkID = drinkID;
-            this.name = name;
-            this.price = price;
-        }
+            this.DrinkID = DrinkID;
+            this.Name = Name;
+            this.Description = Description;
+            this.Price = Price;
+            this.Number = Number;
 
-        public int GetDrinkID()
-        {
-            return this.drinkID;
         }
+        public int DrinkID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int Price { get; set; }
+        public int Number { get; set; }
 
-        public string GetName()
-        {
-            return this.name;
-        }
-        public string GetPrice()
-        {
-            return this.price;
-        }
     }
 }

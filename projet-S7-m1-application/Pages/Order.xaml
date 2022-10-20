@@ -10,26 +10,64 @@
 
 
     <Grid Background="white">
-        <StackPanel Grid.Row="0">
-            <TextBlock HorizontalAlignment="Center"  Text="All ongoing orders" FontWeight="Bold" Margin="0,10,0,0"/>
-            <ListView x:Name="allOrders">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center"  Text="All ongoing orders" FontWeight="Bold" Margin="0,10,0,10"/>
+            <ListView x:Name="allOrders" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Width="801" VerticalContentAlignment="Center" VerticalAlignment="Center">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding Customer.FirstName}" />
-                        <GridViewColumn Header="Last Name" Width="150" DisplayMemberBinding="{Binding Customer.LastName}" />
-                        <GridViewColumn Header="Order Number" Width="150" DisplayMemberBinding="{Binding CustomerOrderID}" />
-                        <GridViewColumn Header="Status" Width="150" DisplayMemberBinding="{Binding status}" />
-                        <GridViewColumn Header="Order" Width="150" >
+                        <GridViewColumn Header="" Width="150" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="See the order" Click="Button_Click" Tag="{Binding CustomerOrderID}"/>
+                                    <TextBlock Text="{Binding Customer.FirstName}" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="" Width="150" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                        <TextBlock Text="{Binding Customer.LastName}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="" Width="150" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CustomerOrderID}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="" Width="150" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding status}" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="" Width="150" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="See the order" HorizontalAlignment="Center" Click="Button_Click" Tag="{Binding CustomerOrderID}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
-
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </ListView.Resources>
             </ListView>
+            
         </StackPanel>
     </Grid>
 </Page>

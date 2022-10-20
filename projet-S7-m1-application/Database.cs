@@ -11,10 +11,6 @@ namespace projet_S7_m1_application
 {
     internal class Database
     {
-        // MYSQL PASSWORD : kuYLhcayA8h373r
-        // MYSQL USERNAME :     
-        // Database : robebou_m1_application_project 
-        // Host : mysql-robebou.alwaysdata.net
         public MySqlConnection conn;
         public Database()
         {

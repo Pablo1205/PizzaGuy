@@ -24,7 +24,7 @@ namespace projet_S7_m1_application
     {
         public Main()
         {
-            GetAvailablePizza();
+            //GetAvailablePizza();
             GetAvailableDrink();
             InitializeComponent();
         }
@@ -33,6 +33,7 @@ namespace projet_S7_m1_application
 
         private void GetAvailablePizza()
         {
+            /*
             Database newDatabse = new Database();
             MySqlConnection conn = newDatabse.conn;
             string sql = "SELECT * from Pizza";
@@ -46,14 +47,12 @@ namespace projet_S7_m1_application
             }
             rdr.Close();
             Application.Current.Properties["AvailablePizza"] = listPizza;
-            listPizza.ForEach(pizza =>
-            {
-                Console.WriteLine(pizza.GetName());
-            });
             newDatabse.CloseConnection();
+            */
         }
         private void GetAvailableDrink()
         {
+            /*
             Database newDatabse = new Database();
             MySqlConnection conn = newDatabse.conn;
             string sql = "SELECT * from Drink";
@@ -72,6 +71,7 @@ namespace projet_S7_m1_application
                 Console.WriteLine(drink.GetName());
             });
             newDatabse.CloseConnection();
+            */
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

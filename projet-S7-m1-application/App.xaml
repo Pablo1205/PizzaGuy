@@ -3,13 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:projet_S7_m1_application"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf">
     <Application.Resources>
         <ResourceDictionary>
         <ResourceDictionary.MergedDictionaries>
             <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Blue" SecondaryColor="Lime" />
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
         </ResourceDictionary.MergedDictionaries>
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type ButtonBase}">
+            <Grid>
+                <AdornerDecorator CacheMode="{Binding (wpf:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
+                    <Grid>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding (wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}" Effect="{Binding (wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <ProgressBar x:Name="ProgressBar" Background="{Binding (wpf:ButtonProgressAssist.IndicatorBackground), RelativeSource={RelativeSource TemplatedParent}}" BorderBrush="{Binding (wpf:ButtonProgressAssist.IndicatorBackground), RelativeSource={RelativeSource TemplatedParent}}" Foreground="{Binding (wpf:ButtonProgressAssist.IndicatorForeground), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left" Height="{TemplateBinding Height}" IsIndeterminate="{Binding (wpf:ButtonProgressAssist.IsIndeterminate), RelativeSource={RelativeSource TemplatedParent}}" Maximum="{Binding (wpf:ButtonProgressAssist.Maximum), RelativeSource={RelativeSource TemplatedParent}}" Minimum="{Binding (wpf:ButtonProgressAssist.Minimum), RelativeSource={RelativeSource TemplatedParent}}" Opacity="{Binding (wpf:ButtonProgressAssist.Opacity), RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource MaterialDesignLinearProgressBar}" Value="{Binding (wpf:ButtonProgressAssist.Value), RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" Visibility="{Binding (wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}}">
+                            <ProgressBar.Clip>
+                                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                    <Binding ElementName="border" Path="ActualWidth"/>
+                                    <Binding ElementName="border" Path="ActualHeight"/>
+                                    <Binding ElementName="border" Path="CornerRadius"/>
+                                    <Binding ElementName="border" Path="BorderThickness"/>
+                                </MultiBinding>
+                            </ProgressBar.Clip>
+                        </ProgressBar>
+                    </Grid>
+                </AdornerDecorator>
+                <wpf:Ripple ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Focusable="False" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <wpf:Ripple.Clip>
+                        <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                            <Binding ElementName="border" Path="ActualWidth"/>
+                            <Binding ElementName="border" Path="ActualHeight"/>
+                            <Binding ElementName="border" Path="CornerRadius"/>
+                            <Binding ElementName="border" Path="BorderThickness"/>
+                        </MultiBinding>
+                    </wpf:Ripple.Clip>
+                </wpf:Ripple>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="wpf:ShadowAssist.Darken" TargetName="border" Value="False"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="true">
+                    <Setter Property="wpf:ShadowAssist.Darken" TargetName="border" Value="False"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Opacity" Value="0.38"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -81,6 +81,7 @@ namespace projet_S7_m1_application.Pages
             }
             pizzas.ItemsSource = this.OrderSP;
             rdrpizza.Close();
+            database.CloseConnection();
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
