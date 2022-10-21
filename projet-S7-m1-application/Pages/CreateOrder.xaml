@@ -214,7 +214,7 @@
                 </ListBox>
                 <TextBlock FontSize="28" Grid.Row="1" HorizontalAlignment="Left" Margin="284,10,0,40" Grid.ColumnSpan="2">
                     <TextBlock Text="Total Cost : "/>
-                    <TextBlock Text="10" x:Name="totalPriceText"/>
+                    <TextBlock Text="0" x:Name="totalPriceText"/>
                     <TextBlock Text=" €"/>
                 </TextBlock>
 
