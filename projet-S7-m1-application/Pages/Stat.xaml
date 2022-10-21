@@ -60,8 +60,24 @@
                     <ComboBoxItem>02H</ComboBoxItem>
                 </ComboBox>
 
-                <TextBlock HorizontalAlignment="Center"  Text="Average Order Price" FontWeight="Bold" Margin="0,10,0,0"/>
+                <ListView x:Name="timegrid">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="CustomerOrder" Width="160" DisplayMemberBinding="{Binding CustomerOrderID}" />
+                            <GridViewColumn Header="Customer" Width="130" DisplayMemberBinding="{Binding CustomerID}" />
+                            <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding status}" />
+                            <GridViewColumn Header="Clerk Person" Width="140" DisplayMemberBinding="{Binding idClerk}" />
+                            <GridViewColumn Header="Delivery Person" Width="156" DisplayMemberBinding="{Binding idDeliverer}" />
+                            <GridViewColumn Header="Price" Width="95" DisplayMemberBinding="{Binding price}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
+                <TextBlock HorizontalAlignment="Center"  Text="Average Order Price" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock HorizontalAlignment="Center"  Text="The average order price is :" Margin="0,10,0,0"/>
+                <TextBlock HorizontalAlignment="Center"  Text="{Binding Path=avgPrice}" Margin="0,10,0,0"/>
+                <TextBlock HorizontalAlignment="Center"  Text="euros" Margin="0,10,0,0"/>
+                
                 <TextBlock HorizontalAlignment="Center"  Text="Average Accounts Receivable" FontWeight="Bold" Margin="0,10,0,0"/>
                 
             </StackPanel>

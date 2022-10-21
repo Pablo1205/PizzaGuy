@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
+using Org.BouncyCastle.Utilities;
 using projet_S7_m1_application.Classes;
 using System;
 using System.Collections.Generic;
@@ -25,10 +27,18 @@ namespace projet_S7_m1_application.Pages
         List<NumberOfOrdersByWorker> OrdersByClerk = new List<NumberOfOrdersByWorker>();
         List<NumberOfOrdersByWorker> OrdersByDeliverer = new List<NumberOfOrdersByWorker>();
         List<CustomerOrder> OrdersByDateTime = new List<CustomerOrder>();
+        private int test = 0;
+        public int avgPrice 
+        { 
+            get { return test; } 
+            set { test = value; }
+        }   
+
         public Stat()
         {
             InitializeComponent();
-
+            timegrid.ItemsSource = this.OrdersByDateTime;
+            this.DataContext = this;
             Database database = new Database();
             MySqlConnection conn = database.conn;
 
@@ -41,7 +51,6 @@ namespace projet_S7_m1_application.Pages
             while (rdrNOOBC.Read())
             {
                 this.OrdersByClerk.Add(new NumberOfOrdersByWorker(rdrNOOBC[0].ToString(), rdrNOOBC[1].ToString(), (int)rdrNOOBC[2], int.Parse(rdrNOOBC[3].ToString())));
-                //Console.WriteLine(rdrNOOBC[0].ToString());
             }
             noobc.ItemsSource = this.OrdersByClerk;
             rdrNOOBC.Close();
@@ -55,35 +64,61 @@ namespace projet_S7_m1_application.Pages
             while (rdrNOOBD.Read())
             {
                 this.OrdersByDeliverer.Add(new NumberOfOrdersByWorker(rdrNOOBD[0].ToString(), rdrNOOBD[1].ToString(), (int)rdrNOOBD[2], int.Parse(rdrNOOBD[3].ToString())));
-                //Console.WriteLine(rdrNOOBC[0].ToString());
             }
             noobd.ItemsSource = this.OrdersByDeliverer;
             rdrNOOBD.Close();
 
-            //get orders by time period
-            /*string sqlOBTP = "SELECT CustomerOrder.orderDate FROM CustomerOrder WHERE orderDate LIKE '% " + 20 + ":__:__'";
-            MySqlCommand cmdOBTP = new MySqlCommand(sqlOBTP, conn);
-            MySqlDataReader rdrOBTP = cmdOBTP.ExecuteReader();
+            //show average order prices
+            string sqlAOP = "SELECT CustomerOrder.price FROM CustomerOrder";
+            MySqlCommand cmdAOP = new MySqlCommand(sqlAOP, conn);
+            MySqlDataReader rdrAOP = cmdAOP.ExecuteReader();
 
-
-            while (rdrOBTP.Read())
+            int nb = 0;
+            int i = 0;
+            while (rdrAOP.Read())
             {
-                this.OrdersByDateTime.Add(new CustomerOrder(rdrOBTP[0].ToString()));
-                //Console.WriteLine(rdrNOOBC[0].ToString());
+                nb += (int)rdrAOP[0];
+                i++;
             }
-            timegrid.ItemsSource = this.OrdersByDateTime;
-            rdrOBTP.Close();*/
+            this.avgPrice = nb / i; 
+            rdrAOP.Close();
+
+
 
             database.CloseConnection();
         }
+
+        //show orders by time period
         private void OnComboBoxChanged(object sender, RoutedEventArgs e)
         {
+            
             ComboBox comboBox = sender as ComboBox;
             int s = 0;
             string selected = (string)comboBox.SelectedValue;
-            if (selected != null) selected = selected.Substring(0, 2);
-            if (selected != null) s = int.Parse(selected);
-            Console.WriteLine(s);
+            if (selected != null)
+            {
+                this.OrdersByDateTime.Clear();
+                selected = selected.Substring(0, 2);
+                s = int.Parse(selected);
+                //Console.WriteLine(s);
+
+                Database database = new Database();
+                MySqlConnection conn = database.conn;
+
+                string sqlOBTP = "SELECT * FROM CustomerOrder WHERE orderDate LIKE '% " + s + ":__:__'";
+                MySqlCommand cmdOBTP = new MySqlCommand(sqlOBTP, conn);
+                MySqlDataReader rdrOBTP = cmdOBTP.ExecuteReader();
+
+                while (rdrOBTP.Read())
+                {
+                    this.OrdersByDateTime.Add(new CustomerOrder((int)rdrOBTP[0], (int)rdrOBTP[1], rdrOBTP[2].ToString(), rdrOBTP[3].ToString(), (int)rdrOBTP[4], (int)rdrOBTP[5], (int)rdrOBTP[6]));
+   
+                }
+                timegrid.Items.Refresh();
+                rdrOBTP.Close();
+
+                database.CloseConnection();
+            }
         }
     }
 }
