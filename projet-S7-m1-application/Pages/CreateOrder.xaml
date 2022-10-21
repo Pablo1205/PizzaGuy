@@ -151,13 +151,13 @@
         <ScrollViewer  Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="450"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <ListBox Style="{DynamicResource ListBoxStyle1}" Grid.Column="0" Margin="10" Name="PizzaList"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
@@ -170,18 +170,24 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="30" />
                                     <ColumnDefinition Width="30" />
                                     <ColumnDefinition Width="30" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock VerticalAlignment="Center" Text="{Binding Name}" Grid.Column="0" />
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="1">
+                                <ComboBox SelectedValuePath="Content" Grid.Column="1" SelectionChanged="OnComboBoxChanged" Style="{StaticResource ResourceKey=MaterialDesignComboBox}">
+                                    <ComboBoxItem IsSelected="{Binding SmallSize}">Small</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="{Binding MediumSize}">Medium</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="{Binding LargeSize}">Large</ComboBoxItem>
+                                </ComboBox>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="2">
                                      <TextBlock Text="{Binding Price}"/>
                                     <TextBlock>€</TextBlock>
                                 </TextBlock>
-                                <Button Click="RemovePizza" Grid.Column="2" Padding="0" Width="30" Height="30" Background="Transparent">-</Button>
-                                <TextBlock VerticalAlignment="Center" Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" Grid.Column="3"/>
-                                <Button Click="AddPizza" Grid.Column="4" Padding="0" Width="30" Height="30" Background="Transparent">+</Button>
+                                <Button Click="RemovePizza" Grid.Column="3" Padding="0" Width="30" Height="30" Background="Transparent">-</Button>
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" Grid.Column="4"/>
+                                <Button Click="AddPizza" Grid.Column="5" Padding="0" Width="30" Height="30" Background="Transparent">+</Button>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -212,12 +218,85 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <TextBlock FontSize="28" Grid.Row="1" HorizontalAlignment="Left" Margin="284,10,0,40" Grid.ColumnSpan="2">
-                    <TextBlock Text="Total Cost : "/>
-                    <TextBlock Text="0" x:Name="totalPriceText"/>
-                    <TextBlock Text=" €"/>
-                </TextBlock>
+                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="0 0 0 1" Background="{x:Null}" />
+                <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 0 1" Background="{x:Null}" />
 
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400" />
+                        <ColumnDefinition Width="400" />
+                    </Grid.ColumnDefinitions>
+                        <ListBox Style="{DynamicResource ListBoxStyle1}" Grid.Row="0" Grid.Column="0"  Margin="23 0 0 0" Name="RecapOrder"  HorizontalContentAlignment="Right" VerticalContentAlignment="Center">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}" Grid.Column="0" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Size}" Grid.Column="1" />
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="2">
+                                        <TextBlock Text="{Binding Price}"/>
+                                        <TextBlock>€</TextBlock>
+                                    </TextBlock>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Quantity}" Margin="10,0,10,0" Grid.Column="3"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    <ListBox Style="{DynamicResource ListBoxStyle1}" Grid.Row="0" Grid.Column="1"  Margin="23 0 0 30" Name="RecapOrderDrink"  HorizontalContentAlignment="Right" VerticalContentAlignment="Top">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Name}" Grid.Column="0" />
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Size}" Grid.Column="1" />
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="2">
+                                        <TextBlock Text="{Binding Price}"/>
+                                        <TextBlock>€</TextBlock>
+                                    </TextBlock>
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Quantity}" Margin="10,0,10,0" Grid.Column="3"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock FontSize="28" Margin="0 70 0 0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1">
+                        <TextBlock Text="Total Cost : "/>
+                        <TextBlock Text="0" x:Name="totalPriceText"/>
+                        <TextBlock Text=" €"/>
+                    </TextBlock>
+
+                    <Button Click="AddToOrder" Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="150" Content="Add to order"
+                            Height="40"
+                            Foreground="White"
+                            Background="#272537"
+                            FontSize="20"
+                            Margin="0 20 0 20"
+                            Grid.Column="0"
+                            materialDesign:ButtonAssist.CornerRadius="10" Cursor="Hand" RenderTransformOrigin="0.513,1.941" Grid.Row="1"
+                        />
+                    <Button Click="ConfirmOrder" Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="150" Content="Confirm"
+                            Height="40"
+                            Foreground="White"
+                            Background="#272537"
+                            Margin="0 20 0 20"
+                            FontSize="20"
+                            materialDesign:ButtonAssist.CornerRadius="10" Cursor="Hand" Grid.Column="1" RenderTransformOrigin="0.362,4.915" Grid.Row="1"
+                        />
+                </Grid>
             </Grid>
         </ScrollViewer>
 

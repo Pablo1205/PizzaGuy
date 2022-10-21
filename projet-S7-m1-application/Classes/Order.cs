@@ -7,11 +7,16 @@ using System.Windows.Documents;
 
 namespace projet_S7_m1_application.Classes
 {
-    public abstract class Order
+    public class Order
     {
         public int Id;
         public int CustomerOrderID;
-        public int Quantity;
+
+        public int Price { get; set; }
+        public string Name { get; set; }
+
+        public int Quantity { get; set; }
+
 
         public int GetID()
         {   
@@ -23,9 +28,5 @@ namespace projet_S7_m1_application.Classes
             return this.CustomerOrderID;
         }
 
-        public int GetQuantity()
-        {
-            return this.Quantity;
-        }
     }
 }

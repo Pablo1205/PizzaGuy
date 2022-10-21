@@ -18,7 +18,7 @@ namespace projet_S7_m1_application.Classes
         public string PostalCode { get; set; }
         private MySqlConnection conn = null;
         private bool existInDatabase = false;
-        private int CustomerID;
+        public int CustomerID;
 
         public Customer(string PhoneNumber)
         {
@@ -33,6 +33,7 @@ namespace projet_S7_m1_application.Classes
         {
             MySqlConnection conn = this.GetConnection();
             string sql = "SELECT * from Customer WHERE customerID='" + this.CustomerID + "'";
+            Console.WriteLine("ID OF CUSTOMER ==" + this.CustomerID);
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
@@ -75,6 +76,7 @@ namespace projet_S7_m1_application.Classes
                 this.Street = rdr[3].ToString();
                 this.City = rdr[4].ToString();
                 this.PostalCode = rdr[5].ToString();
+                this.CustomerID = (int)rdr[0];
             }
             rdr.Close();
             this.CloseConnection();

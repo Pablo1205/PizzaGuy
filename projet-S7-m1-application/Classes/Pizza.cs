@@ -19,11 +19,20 @@ namespace projet_S7_m1_application.Classes
             this.Number = Number;
 
         }
+        public Pizza()
+        {
+
+        }
         public int PizzaID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int Price { get; set; }
         public int Number { get; set; }
+
+        public string Size { get; set; }
+        public bool SmallSize { get; set; }
+        public bool MediumSize { get; set; }
+        public bool LargeSize { get; set; }
 
     }
 }

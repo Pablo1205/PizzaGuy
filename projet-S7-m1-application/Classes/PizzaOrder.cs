@@ -8,11 +8,7 @@ namespace projet_S7_m1_application.Classes
 {
     public class PizzaOrder : Order
     {
-        public PizzaOrder(int id, int customerOrderID, int quantity)
-        {
-            this.Id = id;
-            this.CustomerOrderID = customerOrderID;
-            this.Quantity = quantity;
-        }
+        public int PizzaID { get; set; }
+        public string Size { get; set; }
     }
 }

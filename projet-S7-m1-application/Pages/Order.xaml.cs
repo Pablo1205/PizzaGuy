@@ -32,7 +32,7 @@ namespace projet_S7_m1_application
             Database database = new Database();
             MySqlConnection conn = database.conn;
 
-            string sql = "SELECT * FROM CustomerOrder";
+            string sql = "SELECT * FROM CustomerOrder ORDER BY orderDate DESC";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
 

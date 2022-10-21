@@ -11,8 +11,5 @@ namespace projet_S7_m1_application.Classes
 
         public int DrinkID { get; set; }
 
-        public int CustomerOrderID { get; set; }
-
-        public int Quantity { get; set; }
     }
 }
