@@ -17,9 +17,25 @@ namespace projet_S7_m1_application.Classes
             this.status = status;
         }
 
+        public CustomerOrder(int CustomerOrderID, int idClerk, int idDeliverer)
+        {
+            this.CustomerOrderID = CustomerOrderID;
+            this.idClerk = idClerk;
+            this.idDeliverer = idDeliverer;
+        }
+
+        public CustomerOrder(string orderDate)
+        {
+            this.orderDate = orderDate;
+        }
+
         public int CustomerID { get; }
         public string status { get; }
         public int CustomerOrderID { get; }
+
+        public string orderDate { get; set; }
+        public int idClerk { get; set; }
+        public int idDeliverer { get; set; }
         public Customer Customer { get; }
 
     }

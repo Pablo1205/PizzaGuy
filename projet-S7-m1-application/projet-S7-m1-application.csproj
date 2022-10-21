@@ -285,10 +285,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\Clerk.cs" />
     <Compile Include="Classes\Customer.cs" />
     <Compile Include="Classes\CustomerOrder.cs" />
+    <Compile Include="Classes\Deliverer.cs" />
     <Compile Include="Classes\Drink.cs" />
     <Compile Include="Classes\DrinkOrder.cs" />
+    <Compile Include="Classes\NumberOfOrdersByWorker.cs" />
     <Compile Include="Classes\Order.cs" />
     <Compile Include="Classes\OrderString.cs" />
     <Compile Include="Classes\Pizza.cs" />

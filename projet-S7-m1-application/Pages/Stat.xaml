@@ -8,7 +8,63 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Stat">
 
-    <Grid>
-        <TextBox Text="Stat"/>
+    <Grid Background="white">
+      
+           
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Grid.Row="0">
+
+                <TextBlock HorizontalAlignment="Center"  Text="Number Of Orders By Clerk" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                <ListView x:Name="noobc">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding fname}" />
+                            <GridViewColumn Header="Last Name" Width="150" DisplayMemberBinding="{Binding lname}" />
+                            <GridViewColumn Header="Number Of Order(s)" Width="200" DisplayMemberBinding="{Binding NOfOrders}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                
+
+                <TextBlock HorizontalAlignment="Center"  Text="Number Of Orders By Delivery Person" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                <ListView x:Name="noobd">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding fname}" />
+                            <GridViewColumn Header="Last Name" Width="150" DisplayMemberBinding="{Binding lname}" />
+                            <GridViewColumn Header="Number Of Order(s)" Width="200" DisplayMemberBinding="{Binding NOfOrders}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                
+                <TextBlock HorizontalAlignment="Center"  Text="Orders By Time Period" FontWeight="Bold" Margin="0,10,0,0"/>
+                
+                <TextBlock HorizontalAlignment="Center"  Text="Select an hour"  Margin="0,10,0,0"/>
+                <ComboBox SelectedValuePath="Content" Width="40" Grid.Column="1" SelectionChanged="OnComboBoxChanged" Style="{StaticResource ResourceKey=MaterialDesignComboBox}">
+                    <ComboBoxItem>12H</ComboBoxItem>
+                    <ComboBoxItem>13H</ComboBoxItem>
+                    <ComboBoxItem>14H</ComboBoxItem>
+                    <ComboBoxItem>15H</ComboBoxItem>
+                    <ComboBoxItem>16H</ComboBoxItem>
+                    <ComboBoxItem>17H</ComboBoxItem>
+                    <ComboBoxItem>18H</ComboBoxItem>
+                    <ComboBoxItem>19H</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">20H</ComboBoxItem>
+                    <ComboBoxItem>21H</ComboBoxItem>
+                    <ComboBoxItem>22H</ComboBoxItem>
+                    <ComboBoxItem>23H</ComboBoxItem>
+                    <ComboBoxItem>00H</ComboBoxItem>
+                    <ComboBoxItem>01H</ComboBoxItem>
+                    <ComboBoxItem>02H</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock HorizontalAlignment="Center"  Text="Average Order Price" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                <TextBlock HorizontalAlignment="Center"  Text="Average Accounts Receivable" FontWeight="Bold" Margin="0,10,0,0"/>
+                
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

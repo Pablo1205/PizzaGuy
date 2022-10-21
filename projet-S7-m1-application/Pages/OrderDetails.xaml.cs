@@ -38,7 +38,6 @@ namespace projet_S7_m1_application.Pages
             MySqlConnection conn = database.conn;
 
             //get customer information
-
             string sql = "SELECT * FROM CustomerOrder WHERE customerOrderID=" + this.customerOrder.CustomerOrderID;
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
@@ -53,7 +52,6 @@ namespace projet_S7_m1_application.Pages
             rdr.Close();
 
             //get drink order 
-
             string sqldrink = "SELECT Drink.name, DrinkOrder.quantity FROM Drink JOIN DrinkOrder ON DrinkOrder.drinkID=Drink.drinkID JOIN CustomerOrder ON CustomerOrder.customerOrderID=DrinkOrder.customerOrderID WHERE CustomerOrder.customerOrderID=" + this.customerOrder.CustomerOrderID;
             MySqlCommand cmddrink = new MySqlCommand(sqldrink, conn);
             MySqlDataReader rdrdrink = cmddrink.ExecuteReader();
@@ -61,14 +59,12 @@ namespace projet_S7_m1_application.Pages
 
             while (rdrdrink.Read())
             {
-                //MessageBox.Show(rdrdrink[0].ToString());
                 this.OrderSD.Add(new OrderString(rdrdrink[0].ToString(), (int)rdrdrink[1]));
             }
             drinks.ItemsSource = this.OrderSD;
             rdrdrink.Close();
 
             //get pizza order 
-
             string sqlpizza = "SELECT Pizza.name, PizzaOrder.quantity FROM Pizza JOIN PizzaOrder ON PizzaOrder.pizzaID=Pizza.pizzaID JOIN CustomerOrder ON CustomerOrder.customerOrderID=PizzaOrder.customerOrderID WHERE CustomerOrder.customerOrderID=" + this.customerOrder.CustomerOrderID;
             MySqlCommand cmdpizza = new MySqlCommand(sqlpizza, conn);
             MySqlDataReader rdrpizza = cmdpizza.ExecuteReader();
@@ -76,7 +72,6 @@ namespace projet_S7_m1_application.Pages
 
             while (rdrpizza.Read())
             {
-                //MessageBox.Show(rdrpizza[0].ToString());
                 this.OrderSP.Add(new OrderString(rdrpizza[0].ToString(), (int)rdrpizza[1]));
             }
             pizzas.ItemsSource = this.OrderSP;
