@@ -27,13 +27,19 @@ namespace projet_S7_m1_application.Pages
         List<CustomerOrder> ThisOrder = new List<CustomerOrder>();
         List<OrderString> OrderSD = new List<OrderString>();
         List<OrderString> OrderSP = new List<OrderString>();
-
+        private string test = "string";
+        public string curOrderStat
+        {
+            get { return test; }
+            set { test = value; }
+        }
 
         public OrderDetails()
         {
             InitializeComponent();
             this.customerOrder = Application.Current.Properties["CurrentOrder"] as CustomerOrder;
-   
+            this.DataContext = this;
+
             Database database = new Database();
             MySqlConnection conn = database.conn;
 
@@ -83,6 +89,39 @@ namespace projet_S7_m1_application.Pages
         {
             Application.Current.Properties["CustomerOrder"] = null;
             NavigationService.Navigate(new Order());
+        }
+
+        //show and update order status
+        private void OnComboBoxChanged(object sender, RoutedEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            this.customerOrder = Application.Current.Properties["CurrentOrder"] as CustomerOrder;
+            string selected = (string)comboBox.SelectedValue;
+
+            Database database = new Database();
+            MySqlConnection conn = database.conn;
+
+            //show current order status
+            string sqlCOS = "SELECT CustomerOrder.status FROM CustomerOrder WHERE CustomerOrder.customerOrderID=" + this.customerOrder.CustomerOrderID;
+            MySqlCommand cmdCOS = new MySqlCommand(sqlCOS, conn);
+            MySqlDataReader rdrCOS = cmdCOS.ExecuteReader();
+
+            while (rdrCOS.Read())
+            {
+                this.curOrderStat = rdrCOS[0].ToString();
+            }
+            rdrCOS.Close();
+
+            // update order status
+            if (selected != null)
+            {               
+                string sql = "UPDATE CustomerOrder SET status = '" + selected + "' WHERE CustomerOrder.customerOrderID=" + this.customerOrder.CustomerOrderID;
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                rdr.Close();   
+            }
+            database.CloseConnection();
         }
     }
 }
