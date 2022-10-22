@@ -3,12 +3,94 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:projet_S7_m1_application.Pages"
       mc:Ignorable="d" 
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="People">
 
-    <Grid>
-        <TextBox Text="BAL BLA BDZA PEOPE"/>
+    <Grid Background="white">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="Show Customers by :"  Margin="0,10,0,0"/>
+                    <ComboBox SelectedValuePath="Content" Width="200" Grid.Column="1" SelectionChanged="OnComboBoxChanged_C" Style="{StaticResource ResourceKey=MaterialDesignComboBox}">
+                        <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem>By alphabetical order - First Name</ComboBoxItem>
+                        <ComboBoxItem>By alphabetical order - Last Name</ComboBoxItem>
+                        <ComboBoxItem>By city</ComboBoxItem>
+                        <ComboBoxItem>Amount of cumulative purchases</ComboBoxItem>
+                    </ComboBox>
+
+                    <ListView x:Name="customers">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding CustomerID}" />
+                                <GridViewColumn Header="First Name" Width="130" DisplayMemberBinding="{Binding FirstName}" />
+                                <GridViewColumn Header="Last Name" Width="130" DisplayMemberBinding="{Binding LastName}" />
+                                <GridViewColumn Header="Phone Number" Width="156" DisplayMemberBinding="{Binding PhoneNumber}" />
+                                <GridViewColumn Header="City" Width="95" DisplayMemberBinding="{Binding City}" />
+                                <GridViewColumn Header="" Width="150" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Remove" HorizontalAlignment="Center" Click="Button_Click_Remove_Customer" Tag="{Binding CustomerID}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                        </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                <TextBlock HorizontalAlignment="Center"  FontWeight="Bold" Text="Show Clerk by :"  Margin="0,10,0,0"/>
+                    <ComboBox SelectedValuePath="Content" Width="200" Grid.Column="1" SelectionChanged="OnComboBoxChanged_WC" Style="{StaticResource ResourceKey=MaterialDesignComboBox}">
+                        <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem>By alphabetical order - First Name</ComboBoxItem>
+                        <ComboBoxItem>By alphabetical order - Last Name</ComboBoxItem>
+                    </ComboBox>
+
+                <ListView x:Name="workforceclerks">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" Width="160" DisplayMemberBinding="{Binding idClerk}" />
+                            <GridViewColumn Header="First Name" Width="160" DisplayMemberBinding="{Binding fname}" />
+                            <GridViewColumn Header="Last Name" Width="130" DisplayMemberBinding="{Binding lname}" />
+                            <GridViewColumn Header="" Width="150" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Remove" HorizontalAlignment="Center" Click="Button_Click_Remove_Clerk" Tag="{Binding idClerk}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="Show Delivery Person by :"  Margin="0,10,0,0"/>
+                    <ComboBox SelectedValuePath="Content" Width="200" Grid.Column="1" SelectionChanged="OnComboBoxChanged_WD" Style="{StaticResource ResourceKey=MaterialDesignComboBox}">
+                        <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem>By alphabetical order - First Name</ComboBoxItem>
+                        <ComboBoxItem>By alphabetical order - Last Name</ComboBoxItem>
+                    </ComboBox>
+
+                    <ListView x:Name="workforcedeliverers">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="160" DisplayMemberBinding="{Binding idDeliverer}" />
+                                <GridViewColumn Header="First Name" Width="160" DisplayMemberBinding="{Binding fname}" />
+                                <GridViewColumn Header="Last Name" Width="130" DisplayMemberBinding="{Binding lname}" />
+                                <GridViewColumn Header="" Width="150" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Remove" HorizontalAlignment="Center" Click="Button_Click_Remove_Deliverer" Tag="{Binding idDeliverer}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                        </GridView>
+                        </ListView.View>
+                    </ListView>
+
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
+

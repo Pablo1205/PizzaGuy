@@ -9,11 +9,18 @@ namespace projet_S7_m1_application.Classes
 {
     internal class Clerk
     {
-        private int idClerk;
+        public int idClerk { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }
 
         private MySqlConnection conn = null;
+
+        public Clerk(int idClerk, string fname, string lname) 
+        {
+            this.idClerk = idClerk;
+            this.fname = fname;
+            this.lname = lname;
+        }
 
         private MySqlConnection GetConnection()
         {

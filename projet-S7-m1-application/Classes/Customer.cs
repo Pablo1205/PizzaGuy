@@ -18,11 +18,20 @@ namespace projet_S7_m1_application.Classes
         public string PostalCode { get; set; }
         private MySqlConnection conn = null;
         private bool existInDatabase = false;
-        public int CustomerID;
+        public int CustomerID { get; set; }
 
         public Customer(string PhoneNumber)
         {
             this.PhoneNumber = PhoneNumber;
+        }
+
+        public Customer(int CustomerID, string FirstName, string LastName,  string PhoneNumber , string City)
+        {
+            this.CustomerID = CustomerID;
+            this.FirstName = FirstName; 
+            this.LastName = LastName;   
+            this.PhoneNumber = PhoneNumber;
+            this.City = City;   
         }
         public Customer(int customerID)
         {

@@ -9,11 +9,18 @@ namespace projet_S7_m1_application.Classes
 {
     internal class Deliverer
     {
-        private int idDeliverer;
+        public int idDeliverer { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }
 
         private MySqlConnection conn = null;
+
+        public Deliverer(int idDeliverer, string fname, string lname) 
+        {
+            this.idDeliverer = idDeliverer;
+            this.fname = fname;
+            this.lname = lname;
+        }
 
         private MySqlConnection GetConnection()
         {
