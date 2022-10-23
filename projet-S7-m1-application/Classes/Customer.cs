@@ -25,13 +25,9 @@ namespace projet_S7_m1_application.Classes
             this.PhoneNumber = PhoneNumber;
         }
 
-        public Customer(int CustomerID, string FirstName, string LastName,  string PhoneNumber , string City)
+        public Customer()
         {
-            this.CustomerID = CustomerID;
-            this.FirstName = FirstName; 
-            this.LastName = LastName;   
-            this.PhoneNumber = PhoneNumber;
-            this.City = City;   
+
         }
         public Customer(int customerID)
         {
