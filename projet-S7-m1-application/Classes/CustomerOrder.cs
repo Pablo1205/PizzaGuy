@@ -22,18 +22,15 @@ namespace projet_S7_m1_application.Classes
             this.status = status;
         }
 
-        public CustomerOrder(int CustomerOrderID, int idClerk, int idDeliverer)
-        {
-            this.CustomerOrderID = CustomerOrderID;
-            this.idClerk = idClerk;
-            this.idDeliverer = idDeliverer;
-        }
-
-        public CustomerOrder(int CustomerOrderID, int CustomerID ,string status, string orderDate, int idClerk, int idDeliverer, int price)
+        public CustomerOrder(int CustomerOrderID, int CustomerID, string status, string orderDate, int idClerk, int idDeliverer, int price)
         {
             this.CustomerOrderID = CustomerOrderID;
             this.CustomerID = CustomerID;
             this.status = status;
+            if (status == "ordered") this.IsOrdered = true;
+            if (status == "In preparation") this.IsInPreparation = true;
+            if (status == "In delivery") this.IsInDelivery = true;
+            if (status == "Closed") this.IsClosed = true;
             this.orderDate = orderDate;
             this.idClerk = idClerk;
             this.idDeliverer = idDeliverer;
@@ -41,10 +38,10 @@ namespace projet_S7_m1_application.Classes
         }
 
         [JsonProperty("CustomerID")]
-        public int CustomerID { get; set;  }
+        public int CustomerID { get; set; }
 
         [JsonProperty("status")]
-        public string status { get; set;  }
+        public string status { get; set; }
 
         [JsonProperty("CustomerOrderID")]
         public int CustomerOrderID { get; set; }
@@ -63,6 +60,12 @@ namespace projet_S7_m1_application.Classes
 
         [JsonProperty("Customer")]
         public Customer Customer { get; set; }
+
+        public bool IsInPreparation { get; set;} = false;
+        public bool IsInDelivery { get; set; } = false;
+        public bool IsClosed { get; set; } = false;
+        public bool IsOrdered { get; set; } = false;
+
 
     }
 }

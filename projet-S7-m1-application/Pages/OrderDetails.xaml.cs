@@ -49,10 +49,14 @@ namespace projet_S7_m1_application.Pages
             MySqlDataReader rdr = cmd.ExecuteReader();
 
 
+
             while (rdr.Read())
             {
-                this.ThisOrder.Add(new CustomerOrder((int)rdr[0], rdr[2].ToString(), (int)rdr[1]));
+
+                this.ThisOrder.Add(new CustomerOrder() { CustomerOrderID = (int)rdr[0], status = rdr[2].ToString(), CustomerID = (int)rdr[1] , price = (int)rdr[6] });
+
             }
+            
             clientcontact.ItemsSource = this.ThisOrder;
             clientaddress.ItemsSource = this.ThisOrder;
             rdr.Close();
@@ -98,19 +102,13 @@ namespace projet_S7_m1_application.Pages
             this.customerOrder = Application.Current.Properties["CurrentOrder"] as CustomerOrder;
             string selected = (string)comboBox.SelectedValue;
 
+            //this.customerOrder.SetAllToFalse();
+            if (selected == "In delivery") {
+                MessageBroker messageBroker = Application.Current.Properties["messageBroker"] as MessageBroker;
+                messageBroker.SendMessageToLivreur(this.customerOrder);
+            }
             Database database = new Database();
             MySqlConnection conn = database.conn;
-
-            //show current order status
-            string sqlCOS = "SELECT CustomerOrder.status FROM CustomerOrder WHERE CustomerOrder.customerOrderID=" + this.customerOrder.CustomerOrderID;
-            MySqlCommand cmdCOS = new MySqlCommand(sqlCOS, conn);
-            MySqlDataReader rdrCOS = cmdCOS.ExecuteReader();
-
-            while (rdrCOS.Read())
-            {
-                this.curOrderStat = rdrCOS[0].ToString();
-            }
-            rdrCOS.Close();
 
             // update order status
             if (selected != null)

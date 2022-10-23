@@ -41,6 +41,9 @@ namespace projet_S7_m1_application
             if (Username.Text == "cuisine")
             {
                 _messageBroker.ListenToCuisineEvent();
+            } else if (Username.Text == "livreur")
+            {
+                _messageBroker.ListenToLivreurEvent();
             }
             
 

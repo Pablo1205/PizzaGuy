@@ -39,7 +39,7 @@ namespace projet_S7_m1_application
             
             while (rdr.Read())
             {
-                this.listOrder.Add(new CustomerOrder((int)rdr[0], rdr[2].ToString(), (int)rdr[1]));
+                this.listOrder.Add(new CustomerOrder((int)rdr[0], rdr[2].ToString(), (int)rdr[1]) { price= (int)rdr[6] });
             }
             allOrders.ItemsSource = this.listOrder;
             rdr.Close();
