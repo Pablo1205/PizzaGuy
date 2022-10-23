@@ -53,7 +53,7 @@ namespace projet_S7_m1_application.Pages
             while (rdr.Read())
             {
 
-                this.ThisOrder.Add(new CustomerOrder() { CustomerOrderID = (int)rdr[0], status = rdr[2].ToString(), CustomerID = (int)rdr[1] , price = (int)rdr[6] });
+                this.ThisOrder.Add(new CustomerOrder((int)rdr[0], rdr[2].ToString(), (int)rdr[1]) { price = (int)rdr[6] });
 
             }
             
