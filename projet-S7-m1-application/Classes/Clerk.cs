@@ -15,11 +15,9 @@ namespace projet_S7_m1_application.Classes
 
         private MySqlConnection conn = null;
 
-        public Clerk(int idClerk, string fname, string lname) 
+        public Clerk() 
         {
-            this.idClerk = idClerk;
-            this.fname = fname;
-            this.lname = lname;
+
         }
 
         private MySqlConnection GetConnection()
