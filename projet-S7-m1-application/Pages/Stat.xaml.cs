@@ -27,12 +27,18 @@ namespace projet_S7_m1_application.Pages
         List<NumberOfOrdersByWorker> OrdersByClerk = new List<NumberOfOrdersByWorker>();
         List<NumberOfOrdersByWorker> OrdersByDeliverer = new List<NumberOfOrdersByWorker>();
         List<CustomerOrder> OrdersByDateTime = new List<CustomerOrder>();
-        private int test = 0;
+        private int test1 = 0;
+        private int test2 = 0;
         public int avgPrice 
         { 
-            get { return test; } 
-            set { test = value; }
-        }   
+            get { return test1; } 
+            set { test1 = value; }
+        }
+        public int nbOfCustomers
+        {
+            get { return test2; }
+            set { test2 = value; }
+        }
 
         public Stat()
         {
@@ -83,7 +89,16 @@ namespace projet_S7_m1_application.Pages
             this.avgPrice = nb / i; 
             rdrAOP.Close();
 
+            //show number of customers
+            string sqlNOC = "SELECT COUNT(Customer.customerID) AS nb FROM Customer ";
+            MySqlCommand cmdNOC = new MySqlCommand(sqlNOC, conn);
+            MySqlDataReader rdrNOC = cmdNOC.ExecuteReader();
 
+            while (rdrNOC.Read())
+            {
+                this.nbOfCustomers += int.Parse(rdrNOC[0].ToString());
+            }
+            rdrNOC.Close();
 
             database.CloseConnection();
         }
