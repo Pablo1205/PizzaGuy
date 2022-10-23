@@ -69,5 +69,15 @@ namespace projet_S7_m1_application.Classes
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        public string GetFirstName()
+        {
+            return this.fname;
+        }
+
+        public string GetLastName()
+        {
+            return this.lname;
+        }
     }
 }

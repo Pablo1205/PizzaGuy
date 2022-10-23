@@ -20,6 +20,8 @@ namespace projet_S7_m1_application.Classes
         private bool existInDatabase = false;
         public int CustomerID { get; set; }
 
+        public int Spent { get; set; }
+
         public Customer(string PhoneNumber)
         {
             this.PhoneNumber = PhoneNumber;
