@@ -25,7 +25,7 @@ namespace projet_S7_m1_application.Classes
             this.clientToCuisine = connection.CreateModel();
 
             this.clientToCuisine.ExchangeDeclare("client-cuisine-topic", "topic");
-            
+
         }
 
 
@@ -55,7 +55,7 @@ namespace projet_S7_m1_application.Classes
                 Console.WriteLine(" [x] Received '{0}':'{1}'",routingKey,message);
                 new ToastContentBuilder()
                     .AddText("KITCHEN")
-                    .AddText("New order : " + customerOrder.CustomerOrderID + " " + customerOrder.price + " " + customerOrder.Customer.PhoneNumber)
+                    .AddText("New order : " + customerOrder.CustomerOrderID + " " + customerOrder.price + "€")
                     .Show();
             };
             this.clientToCuisine.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
