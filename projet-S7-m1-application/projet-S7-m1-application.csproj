@@ -336,6 +336,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UpdateClerk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UpdateCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UpdateDeliverer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Welcome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -365,6 +377,15 @@
     </Compile>
     <Compile Include="Pages\Stat.xaml.cs">
       <DependentUpon>Stat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UpdateClerk.xaml.cs">
+      <DependentUpon>UpdateClerk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UpdateCustomer.xaml.cs">
+      <DependentUpon>UpdateCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UpdateDeliverer.xaml.cs">
+      <DependentUpon>UpdateDeliverer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>

@@ -15,11 +15,9 @@ namespace projet_S7_m1_application.Classes
 
         private MySqlConnection conn = null;
 
-        public Deliverer(int idDeliverer, string fname, string lname) 
+        public Deliverer() 
         {
-            this.idDeliverer = idDeliverer;
-            this.fname = fname;
-            this.lname = lname;
+
         }
 
         private MySqlConnection GetConnection()
