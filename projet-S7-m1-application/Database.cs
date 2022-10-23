@@ -24,7 +24,6 @@ namespace projet_S7_m1_application
                 this.conn = new MySql.Data.MySqlClient.MySqlConnection();
                 this.conn.ConnectionString = myConnectionString;
                 this.conn.Open();
-                Console.Write("Connection suceeded");
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {

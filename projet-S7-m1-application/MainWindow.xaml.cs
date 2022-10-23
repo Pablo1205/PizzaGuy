@@ -1,4 +1,5 @@
-﻿using System;
+﻿using projet_S7_m1_application.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace projet_S7_m1_application
     /// </summary>
     public partial class MainWindow : Window
     {
+        MessageBroker _messageBroker = new MessageBroker();
         public MainWindow()
         {
             InitializeComponent();
+            Application.Current.Properties["messageBroker"] = _messageBroker;
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -32,8 +36,14 @@ namespace projet_S7_m1_application
         }
         private void LoginButton(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Hello");
             Main secondWindow = new Main();
+            Console.WriteLine(Username.Text);
+            if (Username.Text == "cuisine")
+            {
+                _messageBroker.ListenToCuisineEvent();
+            }
+            
+
             this.Close();
             secondWindow.Show();
         }

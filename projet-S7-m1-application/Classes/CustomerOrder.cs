@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace projet_S7_m1_application.Classes
 {
     internal class CustomerOrder
     {
+        public CustomerOrder()
+        {
+
+        }
         public CustomerOrder(int CustomerOrderID, string status, int CustomerID)
         {
             this.Customer = new Customer(CustomerID);
@@ -35,15 +40,29 @@ namespace projet_S7_m1_application.Classes
             this.price = price;
         }
 
+        [JsonProperty("CustomerID")]
         public int CustomerID { get; set;  }
+
+        [JsonProperty("status")]
         public string status { get; set;  }
+
+        [JsonProperty("CustomerOrderID")]
         public int CustomerOrderID { get; set; }
 
+        [JsonProperty("orderDate")]
         public string orderDate { get; set; }
+
+        [JsonProperty("idClerk")]
         public int idClerk { get; set; }
+
+        [JsonProperty("idDeliverer")]
         public int idDeliverer { get; set; }
+
+        [JsonProperty("price")]
         public int price { get; set; }
-        public Customer Customer { get; }
+
+        [JsonProperty("Customer")]
+        public Customer Customer { get; set; }
 
     }
 }

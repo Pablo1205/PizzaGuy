@@ -259,8 +259,7 @@ namespace projet_S7_m1_application.Pages
             Database database = new Database();
             MySqlConnection conn = database.conn;
             DateTime date = DateTime.Now;
-
-            Console.WriteLine(this.customer.CustomerID);
+            
             try
             {
                 // insert customerorder
@@ -282,12 +281,10 @@ namespace projet_S7_m1_application.Pages
                 while (rdr.Read())
                 {
                     customerOrderID = (int)rdr[0];
-                    Console.WriteLine("ORDER NUMBER " + customerOrderID);
 
                 }
                 rdr.Close();
 
-                Console.WriteLine("ORDER NUMBER " + customerOrderID);
                 // insert PizzaOrder
                 foreach (PizzaOrder order in pizzaOrderList)
                 {
@@ -312,6 +309,8 @@ namespace projet_S7_m1_application.Pages
                 database.CloseConnection();
 
                 Application.Current.Properties["CurrentCustomer"] = null;
+                MessageBroker messageBroker = Application.Current.Properties["messageBroker"] as MessageBroker;
+                messageBroker.SendMessageToCuisine(new CustomerOrder(){ CustomerOrderID = customerOrderID, status= "ordered",price=this.totalPrice, Customer = this.customer, orderDate=date.ToString()});
                 NavigationService.Navigate(new Order());
 
             }
@@ -346,7 +345,6 @@ namespace projet_S7_m1_application.Pages
                 pizza.MediumSize = false;
                 pizza.LargeSize = true;
             }
-            Console.WriteLine(pizza.Size);
         }
     }
 }
