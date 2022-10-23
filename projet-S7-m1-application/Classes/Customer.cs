@@ -20,6 +20,8 @@ namespace projet_S7_m1_application.Classes
         private bool existInDatabase = false;
         public int CustomerID { get; set; }
 
+        private bool customerAlreadyFetched = false;
+
         public Customer(string PhoneNumber)
         {
             this.PhoneNumber = PhoneNumber;
@@ -36,6 +38,8 @@ namespace projet_S7_m1_application.Classes
         }
         private void GetUserInfoFromID()
         {
+            if(this.customerAlreadyFetched) return;
+            this.customerAlreadyFetched = true;
             MySqlConnection conn = this.GetConnection();
             string sql = "SELECT * from Customer WHERE customerID='" + this.CustomerID + "'";
             Console.WriteLine("ID OF CUSTOMER ==" + this.CustomerID);
