@@ -28,12 +28,18 @@
                                 <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding CustomerID}" />
                                 <GridViewColumn Header="First Name" Width="130" DisplayMemberBinding="{Binding FirstName}" />
                                 <GridViewColumn Header="Last Name" Width="130" DisplayMemberBinding="{Binding LastName}" />
-                                <GridViewColumn Header="Phone Number" Width="156" DisplayMemberBinding="{Binding PhoneNumber}" />
                                 <GridViewColumn Header="City" Width="95" DisplayMemberBinding="{Binding City}" />
                                 <GridViewColumn Header="" Width="150" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Content="Remove" HorizontalAlignment="Center" Click="Button_Click_Remove_Customer" Tag="{Binding CustomerID}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="150" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Update" HorizontalAlignment="Center" Click="Button_Click_Update_Customer" Tag="{Binding CustomerID}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -61,6 +67,13 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
+                            <GridViewColumn Header="" Width="150" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Update" HorizontalAlignment="Center" Click="Button_Click_Update_Clerk" Tag="{Binding idClerk}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -82,6 +95,13 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Content="Remove" HorizontalAlignment="Center" Click="Button_Click_Remove_Deliverer" Tag="{Binding idDeliverer}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="150" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <Button Content="Update" HorizontalAlignment="Center" Click="Button_Click_Update_Deliverer" Tag="{Binding idDeliverer}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

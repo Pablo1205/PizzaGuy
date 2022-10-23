@@ -87,7 +87,7 @@ namespace projet_S7_m1_application.Pages
             var result = ((Button)sender).Tag;
 
             int r = int.Parse(result.ToString());
-            Console.WriteLine(r);
+           // Console.WriteLine(r);
             if (((Button)sender).IsEnabled == true)
             {
                 Database database = new Database();
@@ -100,6 +100,99 @@ namespace projet_S7_m1_application.Pages
                 rdr.Close();
             }
             ((Button)sender).IsEnabled = false;
+        }
+
+        // update customer
+        private void Button_Click_Update_Customer(object sender, RoutedEventArgs e)
+        {
+            //Console.WriteLine("Updated");
+            var res = ((Button)sender).Tag;
+            int r = int.Parse(res.ToString());
+            int i = 0;
+            Database database = new Database();
+            MySqlConnection conn = database.conn;
+
+            string sql = "SELECT Customer.customerID FROM Customer WHERE Customer.customerID=" + r;
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                if ((int)rdr[0] == null) 
+                {
+                    ((Button)sender).IsEnabled = false;
+                }
+                else
+                {
+                    var CustomerIDSelected = ((Button)sender).Tag;
+                    Customer result = this.allCustomers.Find(x => x.CustomerID == (int)CustomerIDSelected);
+                    Application.Current.Properties["CurrentCustomer"] = result;
+                    NavigationService.Navigate(new UpdateCustomer());
+                }
+            }
+            rdr.Close();
+        }
+
+        // update clerk
+        private void Button_Click_Update_Clerk(object sender, RoutedEventArgs e)
+        {
+            //Console.WriteLine("Updated");
+            var res = ((Button)sender).Tag;
+            int r = int.Parse(res.ToString());
+            int i = 0;
+            Database database = new Database();
+            MySqlConnection conn = database.conn;
+
+            string sql = "SELECT Clerk.idClerk FROM Clerk WHERE Clerk.idClerk=" + r;
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                if ((int)rdr[0] == null)
+                {
+                    ((Button)sender).IsEnabled = false;
+                }
+                else
+                {
+                    var ClerkIDSelected = ((Button)sender).Tag;
+                    Clerk result = this.allClerks.Find(x => x.idClerk == (int)ClerkIDSelected);
+                    Application.Current.Properties["CurrentClerk"] = result;
+                    NavigationService.Navigate(new UpdateClerk());
+                }
+            }
+            rdr.Close();
+        }
+
+        // update deliverer
+        private void Button_Click_Update_Deliverer(object sender, RoutedEventArgs e)
+        {
+            //Console.WriteLine("Updated");
+            var res = ((Button)sender).Tag;
+            int r = int.Parse(res.ToString());
+            int i = 0;
+            Database database = new Database();
+            MySqlConnection conn = database.conn;
+
+            string sql = "SELECT Deliverer.idDeliverer FROM Deliverer WHERE Deliverer.idDeliverer=" + r;
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                if ((int)rdr[0] == null)
+                {
+                    ((Button)sender).IsEnabled = false;
+                }
+                else
+                {
+                    var DelivererIDSelected = ((Button)sender).Tag;
+                    Deliverer result = this.allDeliverers.Find(x => x.idDeliverer == (int)DelivererIDSelected);
+                    Application.Current.Properties["CurrentDeliverer"] = result;
+                    NavigationService.Navigate(new UpdateDeliverer());
+                }
+            }
+            rdr.Close();
         }
 
         //show customers by
@@ -119,15 +212,15 @@ namespace projet_S7_m1_application.Pages
 
                 if (selected == "By alphabetical order - First Name")
                 {
-                    sql = "SELECT Customer.customerID, Customer.FirstName , Customer.LastName, Customer.PhoneNumber , Customer.Town FROM Customer ORDER BY Customer.FirstName";
+                    sql = "SELECT * FROM Customer ORDER BY Customer.FirstName";
                 }
                 else if (selected == "By alphabetical order - Last Name")
                 {
-                    sql = "SELECT Customer.customerID, Customer.FirstName , Customer.LastName, Customer.PhoneNumber , Customer.Town FROM Customer ORDER BY Customer.LastName";
+                    sql = "SELECT * FROM Customer ORDER BY Customer.LastName";
                 }
                 else if (selected == "By city")
                 {
-                    sql = "SELECT Customer.customerID, Customer.FirstName , Customer.LastName, Customer.PhoneNumber , Customer.Town FROM Customer ORDER BY Customer.Town";
+                    sql = "SELECT * FROM Customer ORDER BY Customer.Town";
                 }
                 /*else if (selected == "Amount of cumulative purchases")
                 {
@@ -139,8 +232,7 @@ namespace projet_S7_m1_application.Pages
 
                 while (rdr.Read())
                 {
-                    this.allCustomers.Add(new Customer((int)rdr[0], rdr[1].ToString(), rdr[2].ToString(), rdr[3].ToString(), rdr[4].ToString()));
-
+                    this.allCustomers.Add(new Customer() { CustomerID = (int)rdr[0], FirstName = rdr[1].ToString(), LastName = rdr[2].ToString(), PhoneNumber = rdr[3].ToString(), City = rdr[4].ToString(), Street = rdr[5].ToString(), PostalCode = rdr[6].ToString()});
                 }
                 customers.Items.Refresh();
                 rdr.Close();
@@ -178,8 +270,7 @@ namespace projet_S7_m1_application.Pages
 
                 while (rdr.Read())
                 {
-                    this.allClerks.Add(new Clerk((int)rdr[0], rdr[1].ToString(), rdr[2].ToString()));
-
+                    this.allClerks.Add(new Clerk() { idClerk= (int)rdr[0] , fname = rdr[1].ToString(), lname = rdr[2].ToString()});
                 }
                 workforceclerks.Items.Refresh();
                 rdr.Close();
@@ -217,8 +308,7 @@ namespace projet_S7_m1_application.Pages
 
                 while (rdr.Read())
                 {
-                    this.allDeliverers.Add(new Deliverer((int)rdr[0], rdr[1].ToString(), rdr[2].ToString()));
-
+                    this.allDeliverers.Add(new Deliverer() { idDeliverer = (int)rdr[0], fname = rdr[1].ToString(), lname = rdr[2].ToString() });
                 }
                 workforcedeliverers.Items.Refresh();
                 rdr.Close();
