@@ -32,23 +32,44 @@ namespace projet_S7_m1_application.Pages
         public UpdateDeliverer()
         {
             InitializeComponent();
-            this.DataContext = this;
+            getDelivererInfo();
+        }
+
+        private void ConfirmDeliverer(object sender, RoutedEventArgs e)
+        {
+            string LastName = LastNameInput.Text;
+            string FirstName = FirstNameInput.Text;
+
+            if (LastName.Length < 2)
+            {
+                TextError.Text = "Last Name is incorrect";
+                return;
+            }
+            else if (FirstName.Length < 2)
+            {
+                TextError.Text = "First Name is incorrect";
+                return;
+            }
+            TextError.Text = "";
+
             this.deliverer = Application.Current.Properties["CurrentDeliverer"] as Deliverer;
 
             Database database = new Database();
             MySqlConnection conn = database.conn;
 
-            string sql = "SELECT * FROM Deliverer WHERE Deliverer.idDeliverer=" + this.deliverer.idDeliverer;
+            string sql = "UPDATE Deliverer SET Deliverer.fname='" + FirstName + "' , Deliverer.lname='" + LastName + "'  WHERE Deliverer.idDeliverer=" + this.deliverer.idDeliverer;
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
+            Application.Current.Properties["CurrentDeliverer"] = null;
+            NavigationService.Navigate(new People());
+        }
 
-            while (rdr.Read())
-            {
-                this.name = rdr[1].ToString() + " " + rdr[2].ToString();
-            }
-            rdr.Close();
-
-            database.CloseConnection();
+        private void getDelivererInfo()
+        {
+            Deliverer deliverer = Application.Current.Properties["CurrentDeliverer"] as Deliverer;
+            this.deliverer = deliverer;
+            LastNameInput.Text = this.deliverer.GetLastName();
+            FirstNameInput.Text = this.deliverer.GetFirstName();
         }
 
         private void GoBack(object sender, RoutedEventArgs e)

@@ -32,28 +32,49 @@ namespace projet_S7_m1_application.Pages
         public UpdateClerk()
         {
             InitializeComponent();
-            this.DataContext = this;
+            getClerkInfo(); 
+        }
+
+        private void ConfirmClerk(object sender, RoutedEventArgs e)
+        {
+            string LastName = LastNameInput.Text;
+            string FirstName = FirstNameInput.Text;
+            
+            if (LastName.Length < 2)
+            {
+                TextError.Text = "Last Name is incorrect";
+                return;
+            }
+            else if (FirstName.Length < 2)
+            {
+                TextError.Text = "First Name is incorrect";
+                return;
+            }
+            TextError.Text = "";
+
             this.clerk = Application.Current.Properties["CurrentClerk"] as Clerk;
 
             Database database = new Database();
             MySqlConnection conn = database.conn;
 
-            string sql = "SELECT * FROM Clerk WHERE Clerk.idClerk=" + this.clerk.idClerk;
+            string sql = "UPDATE Clerk SET Clerk.fname='" + FirstName + "' , Clerk.lname='" + LastName + "'  WHERE Clerk.idClerk=" + this.clerk.idClerk;
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
+            Application.Current.Properties["CurrentClerk"] = null;
+            NavigationService.Navigate(new People());
+        }
 
-            while (rdr.Read())
-            {
-                this.name = rdr[1].ToString() + " " + rdr[2].ToString();
-            }
-            rdr.Close();
-
-            database.CloseConnection();
+        private void getClerkInfo()
+        {
+            Clerk clerk = Application.Current.Properties["CurrentClerk"] as Clerk;
+            this.clerk = clerk;
+            LastNameInput.Text = this.clerk.GetLastName();
+            FirstNameInput.Text = this.clerk.GetFirstName();
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
         {
-            Application.Current.Properties["CustomerClerk"] = null;
+            Application.Current.Properties["ClerkClerk"] = null;
             NavigationService.Navigate(new People());
         }
     }

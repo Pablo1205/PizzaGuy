@@ -21,6 +21,7 @@ namespace projet_S7_m1_application.Classes
         public int CustomerID { get; set; }
 
         private bool customerAlreadyFetched = false;
+        public int Spent { get; set; }
 
         public Customer(string PhoneNumber)
         {

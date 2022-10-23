@@ -212,27 +212,27 @@ namespace projet_S7_m1_application.Pages
 
                 if (selected == "By alphabetical order - First Name")
                 {
-                    sql = "SELECT * FROM Customer ORDER BY Customer.FirstName";
+                    sql = "SELECT Customer.*, SUM(CustomerOrder.price) AS spent FROM Customer JOIN CustomerOrder ON CustomerOrder.customerID = Customer.customerID GROUP BY Customer.customerID ORDER BY Customer.FirstName";
                 }
                 else if (selected == "By alphabetical order - Last Name")
                 {
-                    sql = "SELECT * FROM Customer ORDER BY Customer.LastName";
+                    sql = "SELECT Customer.*, SUM(CustomerOrder.price) AS spent FROM Customer JOIN CustomerOrder ON CustomerOrder.customerID = Customer.customerID GROUP BY Customer.customerID ORDER BY Customer.LastName";
                 }
                 else if (selected == "By city")
                 {
-                    sql = "SELECT * FROM Customer ORDER BY Customer.Town";
+                    sql = "SELECT Customer.*, SUM(CustomerOrder.price) AS spent FROM Customer JOIN CustomerOrder ON CustomerOrder.customerID = Customer.customerID GROUP BY Customer.customerID ORDER BY Customer.Town";
                 }
-                /*else if (selected == "Amount of cumulative purchases")
+                else if (selected == "By amount of cumulative purchases")
                 {
-                    sql = "SELECT * FROM CustomerOrder WHERE orderDate LIKE '% " + selected + ":__:__'";
-                */
+                    sql = "SELECT Customer.*, SUM(CustomerOrder.price) AS spent FROM Customer JOIN CustomerOrder ON CustomerOrder.customerID = Customer.customerID GROUP BY Customer.customerID ORDER BY spent DESC";
+                }
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
                 {
-                    this.allCustomers.Add(new Customer() { CustomerID = (int)rdr[0], FirstName = rdr[1].ToString(), LastName = rdr[2].ToString(), PhoneNumber = rdr[3].ToString(), City = rdr[4].ToString(), Street = rdr[5].ToString(), PostalCode = rdr[6].ToString()});
+                    this.allCustomers.Add(new Customer() { CustomerID = (int)rdr[0], FirstName = rdr[1].ToString(), LastName = rdr[2].ToString(), PhoneNumber = rdr[3].ToString(), City = rdr[4].ToString(), Street = rdr[5].ToString(), PostalCode = rdr[6].ToString(), Spent = int.Parse(rdr[7].ToString()) });
                 }
                 customers.Items.Refresh();
                 rdr.Close();

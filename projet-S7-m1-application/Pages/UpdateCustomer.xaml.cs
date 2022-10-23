@@ -54,26 +54,6 @@ namespace projet_S7_m1_application.Pages
         {
             InitializeComponent();
             getCustomerInfo();
-            /*this.DataContext = this;
-            this.customer = Application.Current.Properties["CurrentCustomer"] as Customer;
-
-            Database database = new Database();
-            MySqlConnection conn = database.conn;
-
-            string sql = "SELECT * FROM Customer WHERE Customer.customerID=" + this.customer.CustomerID;
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                this.name = rdr[1].ToString() + " " + rdr[2].ToString();
-                this.phone = rdr[3].ToString();
-                this.street = rdr[5].ToString();
-                this.zip = rdr[4].ToString() + " " + rdr[6].ToString();
-            }
-            rdr.Close();
-
-            database.CloseConnection();*/
         }
 
         private void ConfirmCustomer(object sender, RoutedEventArgs e)
@@ -122,14 +102,9 @@ namespace projet_S7_m1_application.Pages
             Database database = new Database();
             MySqlConnection conn = database.conn;
 
-            string sql = "UPDATE Customer SET Customer.FirstName=" + FirstName + ",Customer.FirstName=" + LastName +  " WHERE Customer.customerID=" + this.customer.CustomerID;
+            string sql = "UPDATE Customer SET Customer.FirstName='" + FirstName + "' , Customer.LastName='" + LastName + "' , Customer.PhoneNumber='" + PhoneNumberText + "' , Customer.Town='" + TownText + "' , Customer.Street='" + StreetText + "' , Customer.PostalCode='" + PostalCodeText + "'  WHERE Customer.customerID=" + this.customer.CustomerID;
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
-
-
-            //Customer customer = new Customer() { CustomerID= , FirstName = , LastName };
-
-            //customer.AddCustomerToDatabase(LastName, FirstName, StreetText, TownText, PostalCodeText);
             Application.Current.Properties["CurrentCustomer"] = null;
             NavigationService.Navigate(new People());
         }

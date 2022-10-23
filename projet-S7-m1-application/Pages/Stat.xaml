@@ -79,6 +79,9 @@
                 <TextBlock HorizontalAlignment="Center"  Text="euros" Margin="0,10,0,0"/>
                 
                 <TextBlock HorizontalAlignment="Center"  Text="Average Accounts Receivable" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock HorizontalAlignment="Center"  Text="Number of customers :" Margin="0,10,0,0"/>
+                <TextBlock HorizontalAlignment="Center"  Text="{Binding Path=nbOfCustomers}" Margin="0,10,0,0"/>
+
                 
             </StackPanel>
         </ScrollViewer>

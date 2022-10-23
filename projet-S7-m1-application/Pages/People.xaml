@@ -19,7 +19,7 @@
                         <ComboBoxItem>By alphabetical order - First Name</ComboBoxItem>
                         <ComboBoxItem>By alphabetical order - Last Name</ComboBoxItem>
                         <ComboBoxItem>By city</ComboBoxItem>
-                        <ComboBoxItem>Amount of cumulative purchases</ComboBoxItem>
+                        <ComboBoxItem>By amount of cumulative purchases</ComboBoxItem>
                     </ComboBox>
 
                     <ListView x:Name="customers">
@@ -29,6 +29,7 @@
                                 <GridViewColumn Header="First Name" Width="130" DisplayMemberBinding="{Binding FirstName}" />
                                 <GridViewColumn Header="Last Name" Width="130" DisplayMemberBinding="{Binding LastName}" />
                                 <GridViewColumn Header="City" Width="95" DisplayMemberBinding="{Binding City}" />
+                                <GridViewColumn Header="Spent" Width="100" DisplayMemberBinding="{Binding Spent}" />
                                 <GridViewColumn Header="" Width="150" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
